@@ -38,7 +38,7 @@ def sha256(input_str): # accepts a string of 1's and 0's
             s0 = sigma0(words[ii-15])
             s1 = sigma1(words[ii-2])
             words[ii]=add(words[ii-16],s0, words[ii-7], s1)
-            debug(str(ii) + ' ' + words[ii])
+            debug(str(ii) + ' ' + words[ii],delay=0.1,no_newline=True)
 
         debug('new words:\n' + '\n'.join(words))
 
@@ -221,10 +221,10 @@ def add(*args):
     s = zero_pad(s, 32)
     return s
 
-def debug(txt, delay=0.5):
+def debug(txt, delay=0.5, no_newline=False):
     dbg = True
     if dbg:
-        print('\n\n' + str(txt), end='')
+        print('\n\n'*(not no_newline) + str(txt), end='')
         time.sleep(delay)
 
 def str_to_binstr(txt):
@@ -245,7 +245,8 @@ def file_to_binstr(filename):
 
 
 debug('dbg is set to True. to not see a whole bunch of text, change that to false in the \'debug\' function')
-print(sha256(str_to_binstr('hello, world')))
+# print(sha256(str_to_binstr('hello, world')))
+print(sha256(file_to_binstr(r'D:\tmp\testing.mp3')))
 # sha256(str_to_binstr('hello, world'))
 
 # import timeit
